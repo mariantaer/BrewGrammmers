@@ -65,7 +65,7 @@
         }
 
         /* Category Buttons Container Styling */
-.nav-tabs {
+.btn.btn-secondary {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
@@ -76,7 +76,7 @@
 }
 
 /* Individual Tab Button Styling */
-.nav-link {
+.btn.btn-secondary {
   border: none !important;
   background: none;
   color: #333;

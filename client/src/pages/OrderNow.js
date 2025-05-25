@@ -1,25 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // ⬅️ Import useNavigate
+import { Link } from "react-router-dom";
 import ProductList from "../components/ProductList";
 import './ordernow.css';
 
 const OrderNow = ({ addToCart }) => {
-  const navigate = useNavigate(); // ⬅️ Initialize
-
-  const handleGoBack = () => {
-    navigate("/customerdashboard"); // ⬅️ Direct to CustomerDashboard
-  };
-
   return (
     <div className="container mt-4">
-      {/* Go Back to Dashboard Button */}
-      <div className="mb-3">
-        <button className="btn btn-secondary" onClick={handleGoBack}>
-          Go Back to Dashboard
-        </button>
-      </div>
-
+      <h2>Order Now</h2>
+      {/* Assuming ProductList handles rendering the products as cards */}
       <ProductList addToCart={addToCart} />
+
+      <div className="text-center mt-4">
+        <Link to="/customerdashboard" className="btn btn-secondary">
+          ← Back to Dashboard
+        </Link>
+      </div>
     </div>
   );
 };
