@@ -37,7 +37,7 @@ export default function ProductInventory() {
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(""); // ✅ New state for success message
+  const [successMessage, setSuccessMessage] = useState("");
 
   const displayProduct =
     form.id !== null
@@ -72,7 +72,16 @@ export default function ProductInventory() {
   };
 
   const handleDelete = (id) => {
+    const deletedProduct = products.find((p) => p.id === id);
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete "${deletedProduct.name}"?`
+    );
+
+    if (!confirmDelete) return;
+
     setProducts(products.filter((p) => p.id !== id));
+    setSuccessMessage(`Product "${deletedProduct.name}" Deleted successfully ❌`);
+    setTimeout(() => setSuccessMessage(""), 3000);
   };
 
   const handleEdit = (product) => {
@@ -109,8 +118,8 @@ export default function ProductInventory() {
     setForm({ id: null, name: "", qty: "", price: "", category: "" });
     setIsEditing(false);
 
-    setSuccessMessage("Product updated successfully ✅"); // ✅ Show success message
-    setTimeout(() => setSuccessMessage(""), 3000); // ✅ Clear after 3 seconds
+    setSuccessMessage("Product updated successfully ✅");
+    setTimeout(() => setSuccessMessage(""), 3000);
   };
 
   const handleCancel = () => {
@@ -134,7 +143,6 @@ export default function ProductInventory() {
       >
         <h2 style={{ textAlign: "center" }}>Product Inventory</h2>
 
-        {/* ✅ Success message */}
         {successMessage && (
           <div
             style={{
@@ -264,7 +272,6 @@ export default function ProductInventory() {
         </table>
       </div>
 
-      {/* Home button below the container */}
       <div style={{ textAlign: "center", marginTop: "10px" }}>
         <button onClick={() => navigate("/")} style={{ padding: "10px 20px" }}>
           Home

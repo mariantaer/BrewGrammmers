@@ -1,0 +1,67 @@
+/* Add this new container */
+.page-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height of the viewport */
+  background-color: #f8f8f8; /* Optional light background */
+  padding-top: 900px;
+}
+
+/* Existing styles */
+.login-container {
+  max-width: 350px;
+  width: 100%;
+  padding: 500px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #007bff;
+  font-size: 24px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.login-container input,
+.login-container textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.login-container button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.login-container button[type="submit"]:hover {
+  background-color: #2e343a;
+}
+
+.login-container p {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.switch-mode {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+}

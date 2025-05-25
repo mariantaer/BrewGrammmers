@@ -127,134 +127,98 @@ app.post("/signup", (req, res) => {
         });
       });
 
-      // SAVE USER INFO (additional details)
-app.post('/information', async (req, res) => {
-  const { name, contact_number, delivery_address } = req.body;
-
-  if (!name || !contact_number || !delivery_address) {
-    return res.status(400).json({ error: 'All fields are required.' });
-  }
-
-  const createdAt = new Date();
-
-  try {
-    const [result] = await db.execute(
-      'INSERT INTO information (name, contact_number, address, created_at) VALUES (?, ?, ?, ?)',
-      [name, contact_number, delivery_address, createdAt]
-    );
-
-    const userId = result.insertId;
-    res.status(201).json({ message: 'User saved successfully.', userId });
-  } catch (err) {
-    console.error('Database error:', err);
-    res.status(500).json({ error: 'Failed to save user info.' });
-  }
-});
-
 });
 });
 });
 
 // ORDER SUMMARY (overall + details)
-app.post('/api/orders', (req, res) => {
-  const { userId, products, totalAmount } = req.body;
+app.post("/orders", (req, res) => {
+  const { cart, totalAmount } = req.body;
+  const createdAt = new Date();
 
-  if (!userId || !products || !Array.isArray(products) || !totalAmount) {
-    return res.status(400).json({ error: "Missing or invalid order data" });
-  }
+  const values = cart.map((item) => [
+    item.name,
+    item.quantity,
+    item.price * item.quantity,
+    totalAmount,
+    createdAt,
+  ]);
 
-  // Step 1: Insert into orders table
-  const orderSql = `INSERT INTO orders (user_id, total_amount, created_at) VALUES (?, ?, NOW())`;
+  const sql = `
+    INSERT INTO orders (product_name, quantity, sub_total, total_amount, created_at)
+    VALUES ?
+  `;
 
-  db.query(orderSql, [userId, totalAmount], (err, orderResult) => {
+  db.query(sql, [values], (err, result) => {
     if (err) {
-      console.error("❌ Error inserting into orders:", err);
-      return res.status(500).json({ error: "Database error saving order summary" });
+      console.error("Insert error:", err);
+      return res.status(500).json({ message: "Error saving order" });
     }
 
-    const orderId = orderResult.insertId;
-
-    // Step 2: Insert into order_items table
-    const orderItems = products.map((p) => [
-      orderId,
-      p.name,
-      p.quantity,
-      p.price * p.quantity,
-      "Pending"
-    ]);
-
-    const itemsSql = `
-      INSERT INTO order_items (order_id, product_name, quantity, subtotal, status)
-      VALUES ?
-    `;
-
-    db.query(itemsSql, [orderItems], (err2) => {
-      if (err2) {
-        console.error("❌ Error inserting order items:", err2);
-        return res.status(500).json({ error: "Database error saving order items" });
-      }
-
-      res.status(200).json({
-        message: "✅ Order placed successfully",
-        orderId,
-      });
-    });
+    res.status(201).json({ message: "Order saved", orderId: result.insertId });
   });
 });
+
 
 // PRODUCT Routes
-// ✅ Get all products
-app.get("/api/products", (req, res) => {
-  db.query("SELECT * FROM productinventory", (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(results);
-  });
-});
-
-// ✅ Get product by ID
-app.get("/api/products/:id", (req, res) => {
-  const { id } = req.params;
-  db.query("SELECT * FROM productinventory WHERE id = ?", [id], (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-    if (result.length === 0) return res.status(404).json({ error: "Product not found" });
-    res.json(result[0]);
-  });
-});
-
-// ✅ Add a new product
-app.post("/api/products", (req, res) => {
+// CREATE product
+app.post('/products', (req, res) => {
   const { name, qty, price, category } = req.body;
-  const sql = "INSERT INTO productinventory (name, qty, price, category) VALUES (?, ?, ?, ?)";
+  const sql = 'INSERT INTO productinventory (name, qty, price, category) VALUES (?, ?, ?, ?)';
   db.query(sql, [name, qty, price, category], (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ id: result.insertId, name, qty, price, category });
+    if (err) return res.status(500).send(err);
+    res.send({ message: 'Product created', id: result.insertId });
   });
 });
 
-// ✅ Update a product
-app.put("/api/products/:id", (req, res) => {
-  const { id } = req.params;
+// READ all products
+app.get('/products', (req, res) => {
+  db.query('SELECT * FROM productinventory', (err, results) => {
+    if (err) return res.status(500).send(err);
+    res.send(results);
+  });
+});
+
+// READ single product by ID
+app.get('/products/:id', (req, res) => {
+  const sql = 'SELECT * FROM productinventory WHERE id = ?';
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.send(result[0]);
+  });
+});
+
+// UPDATE product
+app.put('/products/:id', (req, res) => {
   const { name, qty, price, category } = req.body;
-  const sql = "UPDATE productinventory SET name = ?, qty = ?, price = ?, category = ? WHERE id = ?";
-  db.query(sql, [name, qty, price, category, id], (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ id, name, qty, price, category });
-  });
-});
-
-// ✅ Delete a product
-app.delete("/api/products/:id", (req, res) => {
   const { id } = req.params;
-  db.query("DELETE FROM productinventory WHERE id = ?", [id], (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Product deleted successfully" });
+
+  const sql = `
+    UPDATE productinventory
+    SET name = ?, qty = ?, price = ?, category = ?
+    WHERE id = ?
+  `;
+
+  db.query(sql, [name, qty, price, category, id], (err, result) => {
+    if (err) {
+      console.error('Error updating product:', err);
+      return res.status(500).send(err);
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).send({ message: 'Product not found' });
+    }
+
+    res.send({ message: 'Product updated successfully' });
   });
 });
 
-app.get("/productinventory", (req, res) => {
-  db.query("SELECT * FROM productinventory", (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(results);
+// DELETE product
+app.delete('/products/:id', (req, res) => {
+  const sql = 'DELETE FROM productinventory WHERE id = ?';
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.send({ message: 'Product deleted' });
   });
 });
 

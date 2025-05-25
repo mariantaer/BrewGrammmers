@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
-
+import "./login.css"; // 🔗 Make sure this file exists
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -69,7 +69,7 @@ const Login = () => {
   return (
     <>
       <NavBar />
-      <div style={{ maxWidth: 300, margin: "auto", padding: 20 }}>
+      <div style={{ maxWidth: 300, margin: "auto", padding: 0, color: "#000000", marginTop: 150, textAlign: "center"  }}>
         <h2>{isLogin ? "Login" : "Sign Up"}</h2>
         <form onSubmit={handleSubmit}>
           {!isLogin && (
@@ -81,7 +81,7 @@ const Login = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                style={{ display: "block", width: "100%", marginBottom: 10 }}
+                style={{ display: "block", justifyContent: "center", width: "100%", margin: "0 auto 20px" }}
               />
               <input
                 name="username"
@@ -90,7 +90,7 @@ const Login = () => {
                 value={formData.username}
                 onChange={handleChange}
                 required
-                style={{ display: "block", width: "100%", marginBottom: 10 }}
+                style={{ display: "block", justifyContent: "center", width: "100%", margin: "0 auto 20px",  }}
               />
               <input
                 name="password"
@@ -99,7 +99,7 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                style={{ display: "block", width: "100%", marginBottom: 10 }}
+                style={{ display: "block", justifyContent: "center", width: "100%", margin: "0 auto 20px" }}
               />
               <input
                 name="contact_number"
@@ -108,7 +108,7 @@ const Login = () => {
                 value={formData.contact_number}
                 onChange={handleChange}
                 required
-                style={{ display: "block", width: "100%", marginBottom: 10 }}
+                style={{ display: "block", justifyContent: "center", width: "100%", margin: "0 auto 20px" }}
               />
               <textarea
                 name="address"
@@ -116,7 +116,7 @@ const Login = () => {
                 value={formData.address}
                 onChange={handleChange}
                 required
-                style={{ display: "block", width: "100%", marginBottom: 10 }}
+                style={{ display: "block", justifyContent: "center", width: "100%", margin: "0 auto 20px" }}
               />
             </>
           )}
@@ -129,7 +129,7 @@ const Login = () => {
                 value={formData.username}
                 onChange={handleChange}
                 required
-                style={{ display: "block", width: "100%", marginBottom: 10 }}
+                style={{ display: "block  ", justifyContent: "center", width: "100%", marginBottom: 10 }}
               />
               <input
                 name="password"
@@ -138,25 +138,27 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                style={{ display: "block", width: "100%", marginBottom: 10 }}
+                style={{ display: "block", justifyContent: "center", width: "100%", marginBottom: 10 }}
               />
             </>
           )}
-          <button type="submit" style={{ width: "100%" }}>
+          <button type="submit" style={{ width: "100%", backgroundColor: "#007bff", borderColor: ""}}>
             {isLogin ? "Login" : "Sign Up"}
           </button>
         </form>
-        <p style={{ marginTop: 15, textAlign: "center" }}>
+        <p style={{ marginTop: 50, textAlign: "center" }}>
           {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
           <button
             onClick={() => setIsLogin(!isLogin)}
-            style={{ background: "none", border: "none", color: "blue", cursor: "pointer" }}
+            style={{ background: "", border: "", color: "blue", cursor: "pointer" }}
           >
             {isLogin ? "Sign Up" : "Login"}
           </button>
         </p>
       </div>
     </>
+
+
   );
 };
 

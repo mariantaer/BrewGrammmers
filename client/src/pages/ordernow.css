@@ -1,0 +1,95 @@
+ body {
+          background-image: url('/public/img/backg.jpg');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+        .row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          justify-content: center;
+        }
+        .product-card {
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          overflow: hidden;
+          transition: transform 0.2s ease-in-out;
+          background-color: white;
+          width: 100%;
+          max-width: 300px;
+        }
+        .product-card:hover {
+          transform: scale(1.03);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .card-img-top {
+          width: 100%;
+          height: 220px;
+          object-fit: cover;
+        }
+        .card-title {
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
+        .card-text {
+          font-size: 1.1rem;
+          margin-bottom: 1rem;
+        }
+        .card-body {
+          padding: 1rem;
+          text-align: center;
+        }
+        .btn-add-to-cart {
+          background-color: blue;
+          color: white;
+          font-weight: bold;
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: background-color 0.2s ease-in-out;
+        }
+        .btn-add-to-cart:hover {
+          background-color: darkblue;
+        }
+        h2 {
+          text-align: center;
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 2rem;
+        }
+
+        /* Category Buttons Container Styling */
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual Tab Button Styling */
+.nav-link {
+  border: none !important;
+  background: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+/* Active Button Highlight */
+.nav-link.active {
+  background-color: #eaeaea;
+  color: #000;
+}

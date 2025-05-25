@@ -12,7 +12,7 @@ const Receipt = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   useEffect(() => {
-    const user = location.state?.userInfo || {};
+    const user = location.state?.userInfo || JSON.parse(localStorage.getItem("userInfo")) || {};
     const cartItems = location.state?.cart || [];
     const now = new Date();
     const formattedDate = now.toLocaleString("en-US", {
@@ -24,7 +24,6 @@ const Receipt = () => {
     setCart(cartItems);
     setOrderDate(formattedDate);
 
-    // Show confirmation message after 3 seconds
     const timer = setTimeout(() => {
       setShowConfirmation(true);
     }, 3000);
@@ -35,25 +34,35 @@ const Receipt = () => {
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   if (cart.length === 0) {
-  return (
-    <div className="receipt-empty-container">
-      <h3>No order details available.</h3>
-      <button className="btn btn-primary mt-3" onClick={() => navigate("/order-now")}>
-        Go to Order Now
-      </button>
-    </div>
-  );
-}
+    return (
+      <div className="receipt-empty-container">
+        <h3>No order details available.</h3>
+        <button className="btn btn-primary mt-3" onClick={() => navigate("/order-now")}>
+          Go to Order Now
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <>
-      {/* Small confirmation message on top, with order summary notes */}
+    <div
+      className="receipt-wrapper"
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "transparent",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "40px 20px",
+      }}
+    >
       {showConfirmation && (
         <div
           className="container text-center"
           style={{
             maxWidth: 600,
-            margin: "100px auto 20px auto",
+            marginBottom: 20,
             padding: "10px 15px",
             backgroundColor: "#f0f8ff",
             borderRadius: 6,
@@ -68,7 +77,7 @@ const Receipt = () => {
         </div>
       )}
 
-      {/* Centered receipt */}
+      {/* White Receipt Container */}
       <div
         className="container"
         style={{
@@ -77,13 +86,11 @@ const Receipt = () => {
           padding: 30,
           borderRadius: 8,
           backgroundColor: "#fff",
-          margin: "20px auto",
           boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
         }}
       >
         <h2 className="text-center mb-4">Receipt</h2>
 
-        {/* Order Details */}
         <section style={{ marginBottom: 20 }}>
           <h5>Order Details</h5>
           <p><strong>Date:</strong> {orderDate}</p>
@@ -94,7 +101,6 @@ const Receipt = () => {
           <p><strong>Address:</strong> {userInfo.address || "N/A"}</p>
         </section>
 
-        {/* Items Table */}
         <section>
           <table className="table">
             <thead>
@@ -125,19 +131,13 @@ const Receipt = () => {
         </section>
       </div>
 
-      {/* Go back to dashboard button below receipt, centered */}
-      <div
-        className="mt-3"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+      {/* Button Below White Container */}
+      <div style={{ marginTop: 20 }}>
         <button className="btn btn-primary" onClick={() => navigate("/customerdashboard")}>
-          Go Back to Dashboard
+          Go to Dashboard
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
