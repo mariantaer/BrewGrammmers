@@ -8,7 +8,7 @@ const Drinks = () => {
   { id: 9, name: "Mocha Latte", price: 215.00, image: "/img/macha.jpg", category: "Drinks" },
   { id: 10, name: "Strawberry Milkshake", price: 190.00, image: "/img/straw.jpg", category: "Drinks" },
   { id: 11, name: "Milk", price: 110.00, image: "/img/milk.jpg", category: "Drinks" },
-  { id: 12, name: "Iced Tea", price: 2.00, image: "/img/tea.jpg", category: "Drinks" },
+  { id: 12, name: "Iced Tea", price: 95.00, image: "/img/tea.jpg", category: "Drinks" },
   ];
 
   return (
@@ -72,7 +72,7 @@ const Drinks = () => {
           transition: background-color 0.2s ease-in-out;
           display: flex;
           text-align: center;
-          margin-left: 505px;
+          margin-left: 580px;
           margin-top: 50px;
         }
         .btn-secondary:hover {

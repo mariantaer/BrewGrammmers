@@ -15,7 +15,7 @@ const products = [
   { id: 9, name: "Mocha Latte", price: 215.00, image: "/img/macha.jpg", category: "Drinks" },
   { id: 10, name: "Strawberry Milkshake", price: 190.00, image: "/img/straw.jpg", category: "Drinks" },
   { id: 11, name: "Milk", price: 110.00, image: "/img/milk.jpg", category: "Drinks" },
-  { id: 12, name: "Iced Tea", price: 2.00, image: "/img/tea.jpg", category: "Drinks" },
+  { id: 12, name: "Iced Tea", price: 95.00, image: "/img/tea.jpg", category: "Drinks" },
 
   { id: 13, name: "Mousse Cake", price: 250.00, image: "/img/cake.jpg", category: "Desserts" },
   { id: 14, name: "Bibingka", price: 100.00, image: "/img/bibingka.jpg", category: "Desserts" },

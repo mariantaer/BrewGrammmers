@@ -75,7 +75,7 @@ const Breads = () => {
           transition: background-color 0.2s ease-in-out;
           display: flex;
           text-align: center;
-          margin-left: 505px;
+          margin-left: 570px;
           margin-top: 50px;
         }
         .btn-secondary:hover {

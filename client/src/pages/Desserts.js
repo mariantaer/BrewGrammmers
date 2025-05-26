@@ -22,7 +22,7 @@ const Desserts = () => {
           background-repeat: no-repeat;
           font-family: Arial, sans-serif;
           margin: 80px;
-          padding: 0;
+          padding: 15px;
         }
         .row {
           display: flex;
@@ -72,7 +72,7 @@ const Desserts = () => {
           transition: background-color 0.2s ease-in-out;
           display: flex;
           text-align: center;
-          margin-left: 505px;
+          margin-left: 550px;
           margin-top: 50px;
         }
         .btn-secondary:hover {

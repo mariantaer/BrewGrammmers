@@ -15,7 +15,7 @@ const Navbar = ({ cart }) => {
           <Link className="navbar-brand" to="/" style={{ color: '#ffffff' }}> BrewGram</Link>
           <div>
             {!hideHomeButton && (
-              <Link className="btn btn-outline-light me-2" to="/" style={{ color: '#ffffff' }}> Home</Link>
+              <Link className="btn btn-outline-light me-2" to="/" style={{ color: '#ffffff' }}>Home</Link>
             )}
           </div>
         </div>
