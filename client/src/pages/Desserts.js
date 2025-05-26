@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const Desserts = () => {
   const products = [
-    { id: 13, name: "Mousse Cake", price: 10.0, image: "/img/cake.jpg" },
-    { id: 14, name: "Bibingka", price: 3.0, image: "/img/bibingka.jpg" },
-    { id: 15, name: "Leche Flan", price: 10.0, image: "/img/Leche Flan.jpg" },
-    { id: 16, name: "Ice Cream", price: 8.75, image: "/img/cream.jpg" },
-    { id: 17, name: "Mango Graham", price: 4.0, image: "/img/graham.jpg" },
-    { id: 18, name: "Chocolate Cookie", price: 5.0, image: "/img/cookie.jpg" },
+    { id: 13, name: "Mousse Cake", price: 250.00, image: "/img/cake.jpg", category: "Desserts" },
+  { id: 14, name: "Bibingka", price: 100.00, image: "/img/bibingka.jpg", category: "Desserts" },
+  { id: 15, name: "Leche Flan", price: 120.00, image: "/img/Leche Flan.jpg", category: "Desserts" },
+  { id: 16, name: "Ice Cream", price: 100.00, image: "/img/cream.jpg", category: "Desserts" },
+  { id: 17, name: "Mango Graham", price: 150.00, image: "/img/graham.jpg", category: "Desserts" },
+  { id: 18, name: "Chocolate Cookie", price: 100.00, image: "/img/cookie.jpg", category: "Desserts" },
   ];
 
   return (
@@ -21,7 +21,7 @@ const Desserts = () => {
           background-position: center;
           background-repeat: no-repeat;
           font-family: Arial, sans-serif;
-          margin: 0;
+          margin: 80px;
           padding: 0;
         }
         .row {
@@ -62,15 +62,18 @@ const Desserts = () => {
           text-align: center;
         }
         .btn-secondary {
-          padding: 0.5rem 1.5rem;
+          padding: 10px 20px;
+          width: 215px;
           font-weight: bold;
           border: none;
-          background-color: #6c757d;
+          background-color: #51504c;
           color: white;
           border-radius: 6px;
           transition: background-color 0.2s ease-in-out;
-          text-decoration: none;
+          display: flex;
           text-align: center;
+          margin-left: 505px;
+          margin-top: 50px;
         }
         .btn-secondary:hover {
           background-color: #5a6268;
@@ -79,7 +82,7 @@ const Desserts = () => {
           text-align: center;
           font-size: 2rem;
           font-weight: bold;
-          margin: 6rem;
+          margin: 8rem;
           margin-bottom: 10px;
         }
       `}</style>
@@ -101,7 +104,7 @@ const Desserts = () => {
 
         <div className="text-center">
           <Link to="/customerdashboard" className="btn-secondary">
-            ← Go Back to Dashboard
+            Go Back to Dashboard
           </Link>
         </div>
       </div>

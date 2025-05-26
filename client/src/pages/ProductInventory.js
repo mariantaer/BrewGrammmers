@@ -2,24 +2,24 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const initialProducts = [
-  { id: 1, name: "Banana Bread", qty: 10, price: 5.0, category: "Breads" },
-  { id: 2, name: "Baguette", qty: 5, price: 4.0, category: "Breads" },
-  { id: 3, name: "Ensaymada", qty: 8, price: 2.5, category: "Breads" },
-  { id: 4, name: "Ham and Cheese Bread", qty: 6, price: 8.75, category: "Breads" },
-  { id: 5, name: "Fresh Bread", qty: 7, price: 4.0, category: "Breads" },
-  { id: 6, name: "Chocolate Brownie", qty: 9, price: 3.5, category: "Breads" },
+  { id: 1, name: "Banana Bread", qty: 10, price: 150.00, category: "Breads" },
+  { id: 2, name: "Baguette", qty: 5, price: 200.00, category: "Breads" },
+  { id: 3, name: "Ensaymada", qty: 8, price: 95.00, category: "Breads" },
+  { id: 4, name: "Ham and Cheese Bread", qty: 89.75, price: 8.75, category: "Breads" },
+  { id: 5, name: "Fresh Bread", qty: 7, price: 90.00, category: "Breads" },
+  { id: 6, name: "Chocolate Brownie", qty: 9, price: 95.00, category: "Breads" },
   { id: 7, name: "Hot Chocolate", qty: 12, price: 3.5, category: "Drinks" },
-  { id: 8, name: "Classic Coffee", qty: 14, price: 4.5, category: "Drinks" },
-  { id: 9, name: "Mocha Latte", qty: 10, price: 4.0, category: "Drinks" },
-  { id: 10, name: "Strawberry Milkshake", qty: 6, price: 5.75, category: "Drinks" },
-  { id: 11, name: "Milk", qty: 10, price: 2.0, category: "Drinks" },
-  { id: 12, name: "Iced Tea", qty: 15, price: 2.0, category: "Drinks" },
-  { id: 13, name: "Mousse Cake", qty: 4, price: 10.0, category: "Desserts" },
-  { id: 14, name: "Bibingka", qty: 5, price: 3.0, category: "Desserts" },
-  { id: 15, name: "Leche Flan", qty: 6, price: 10.0, category: "Desserts" },
-  { id: 16, name: "Ice Cream", qty: 8, price: 8.75, category: "Desserts" },
-  { id: 17, name: "Mango Graham", qty: 7, price: 4.0, category: "Desserts" },
-  { id: 18, name: "Chocolate Cookie", qty: 9, price: 5.0, category: "Desserts" },
+  { id: 8, name: "Classic Coffee", qty: 14, price: 100.00, category: "Drinks" },
+  { id: 9, name: "Mocha Latte", qty: 10, price: 215.00, category: "Drinks" },
+  { id: 10, name: "Strawberry Milkshake", qty: 6, price: 190.00, category: "Drinks" },
+  { id: 11, name: "Milk", qty: 10, price: 110.00, category: "Drinks" },
+  { id: 12, name: "Iced Tea", qty: 15, price: 95.00, category: "Drinks" },
+  { id: 13, name: "Mousse Cake", qty: 4, price: 250.00, category: "Desserts" },
+  { id: 14, name: "Bibingka", qty: 5, price: 100.00, category: "Desserts" },
+  { id: 15, name: "Leche Flan", qty: 6, price: 120.00, category: "Desserts" },
+  { id: 16, name: "Ice Cream", qty: 8, price: 100.00, category: "Desserts" },
+  { id: 17, name: "Mango Graham", qty: 7, price: 150.00, category: "Desserts" },
+  { id: 18, name: "Chocolate Cookie", qty: 9, price: 100.00, category: "Desserts" },
 ];
 
 export default function ProductInventory() {
@@ -27,7 +27,6 @@ export default function ProductInventory() {
   const [products, setProducts] = useState(
     initialProducts.filter((p) => p.price !== undefined && p.price !== null)
   );
-
   const [form, setForm] = useState({
     id: null,
     name: "",
@@ -35,9 +34,9 @@ export default function ProductInventory() {
     price: "",
     category: "",
   });
-
   const [isEditing, setIsEditing] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [isHovered, setIsHovered] = useState(false);
 
   const displayProduct =
     form.id !== null
@@ -270,12 +269,27 @@ export default function ProductInventory() {
             ))}
           </tbody>
         </table>
-      </div>
 
-      <div style={{ textAlign: "center", marginTop: "10px" }}>
-        <button onClick={() => navigate("/")} style={{ padding: "10px 20px" }}>
-          Home
-        </button>
+        {/* Home Button */}
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <button
+            onClick={() => navigate("/")}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: isHovered ? "#1f2ebf" : "#3648e4",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontWeight: "bold",
+              color: "#ffffff",
+              transition: "background-color 0.3s ease",
+            }}
+          >
+            Home
+          </button>
+        </div>
       </div>
     </>
   );

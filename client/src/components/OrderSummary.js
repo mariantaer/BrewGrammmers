@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../pages/ordersummary.css";
 
 const OrderSummary = ({ cart, setCart }) => {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ const OrderSummary = ({ cart, setCart }) => {
         <div className="mb-4">
           <h5>Customer Info:</h5>
           <p><strong>Name:</strong> {userInfo.name}</p>
-          <p><strong>Phone:</strong> {userInfo.phone}</p>
+          <p><strong>Contact Number:</strong> {userInfo.contact_number}</p>
           <p><strong>Address:</strong> {userInfo.address}</p>
         </div>
 
@@ -119,9 +120,9 @@ const OrderSummary = ({ cart, setCart }) => {
                   {cart.map((item) => (
                     <tr key={item.id}>
                       <td>{item.name}</td>
-                      <td>${item.price.toFixed(2)}</td>
+                      <td>₱{item.price.toFixed(2)}</td>
                       <td>{item.quantity}</td>
-                      <td>${(item.price * item.quantity).toFixed(2)}</td>
+                      <td>₱{(item.price * item.quantity).toFixed(2)}</td>
                       <td>
                         <button
                           className="btn btn-warning btn-sm me-2"
@@ -140,7 +141,7 @@ const OrderSummary = ({ cart, setCart }) => {
                   ))}
                 </tbody>
               </table>
-              <h4 className="text-center">Total: ${totalPrice.toFixed(2)}</h4>
+              <h4 className="text-center">Total: ₱{totalPrice.toFixed(2)}</h4>
             </div>
           </>
         )}
@@ -149,13 +150,15 @@ const OrderSummary = ({ cart, setCart }) => {
       {/* Buttons below white container */}
       {cart.length > 0 && (
         <div style={{ marginTop: 20 }}>
-          <button className="btn btn-success me-2" onClick={handleCheckout}>
-            Checkout
-          </button>
-          <button className="btn btn-secondary" onClick={handleBack}>
-            Back
-          </button>
-        </div>
+      {cart.length > 0 && (
+        <button className="btn btn-success me-2" onClick={handleCheckout}>
+          Checkout
+        </button>
+      )}
+      <button className="btn btn-secondary" onClick={handleBack}>
+        Back
+      </button>
+    </div>
       )}
     </div>
   );

@@ -64,11 +64,13 @@ app.post("/login", (req, res) => {
 
     return res.json({
       message: "Login successful!",
-      token,
-      id: user.id,
-      fullname: user.fullname || user.username,
-      username: user.username,
-      role: isAdmin ? "admin" : "user",
+  token,
+  id: user.id,
+  name: user.name || user.fullname || user.username, // for consistency
+  username: user.username,
+  role: isAdmin ? "admin" : "user",
+  contact_number: user.contact_number || "",
+  address: user.address || "",
     });
   });
 });

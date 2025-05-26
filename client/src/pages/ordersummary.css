@@ -1,0 +1,77 @@
+/* Buttons under the order summary */
+.btn.btn-success.me-2 {
+  background-color: #168730;/* Bootstrap success green */
+  color: white;
+  padding: 10px 30px;
+  font-weight: 600;
+  font-size: 16px;
+  border: #000000;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.btn.btn-success.me-2:hover {
+  background-color: #30ac4d;
+}
+
+.text-center.mt-4 {
+  color: white;
+  padding: 10px 30px;
+  margin-left: 20px;
+  font-weight: 600;
+  font-size: 16px;
+  border: #000000;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.btn.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Quantity and delete buttons inside the table */
+.action-btn {
+  font-size: 0.85rem;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+
+.action-btn:hover {
+  transform: scale(1.05);
+}
+
+.reduce-btn {
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+}
+.btn.btn-danger.btn-sm {
+  background-color: #dc3545;
+  color: white;
+  border-radius: 4px; /* Removed extra semicolon */
+  border: none;        /* Optional: removes default border */
+  padding: 4px 12px;   /* Optional: adds padding for better appearance */
+  cursor: pointer;     /* Optional: changes cursor to pointer on hover */
+  font-weight: bold;   /* Optional: makes text more prominent */
+  transition: background-color 0.3s ease; /* Optional: smooth hover effect */
+  margin-left: 5px;
+}
+
+.btn.btn-danger.btn-sm:hover {
+  background-color: rgb(250, 94, 70);
+}
+
+.btn.btn-warning.btn-sm.me-2 {
+  background-color: #e0a800; /* Bootstrap red (danger) */
+  color: white;
+  border-radius: 4px; /* Removed extra semicolon */
+  border: none;        /* Optional: removes default border */
+  padding: 4px 12px;   /* Optional: adds padding for better appearance */
+  cursor: pointer;     /* Optional: changes cursor to pointer on hover */
+  font-weight: bold;   /* Optional: makes text more prominent */
+  transition: background-color 0.3s ease; /* Optional: smooth hover effect */
+  margin-left: 5px;
+}
+.btn.btn-warning.btn-sm.me-2:hover {
+  background-color: #f8c52c;
+}

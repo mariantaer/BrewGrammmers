@@ -53,7 +53,7 @@ const CustomerDashboard = () => {
         </div>
       </div>
 
-      <div className="container d-flex justify-content-center">
+      <div className="ordercontainer">
   <div className="mt-4 mb-5">
     <Link to="/ordernow" className="btn btn-dark">
       Order Now
@@ -64,13 +64,22 @@ const CustomerDashboard = () => {
 
       {/* CSS */}
       <style>{`
-
+        .ordercontainer{
+        display: flex;
+        justify-content: center;
+        margin: 50px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ordercontainer:hoover{
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
         .mt-5{
-        padding:150px;
+        padding: -100px;
+        margin-top: 30px;
         font-size: 1rem;
         text-center;
         }
-
         .product-card {
           display: flex;                 /* Required for flex properties to work */
           flex-direction: column;
@@ -97,7 +106,6 @@ const CustomerDashboard = () => {
           height: 50px;
           object-fit: cover;
           border-radius: 10px;
-          
         }
 
         .product-body {
@@ -116,23 +124,14 @@ const CustomerDashboard = () => {
         }
 
         .btn.btn-dark {
-          background-color: blue;
+          background-color:rgb(25, 39, 156);
           color: white;
           border: none;
           padding: 8px 16px;
           border-radius: 5px;
           font-weight: 500;
-          transition: background-color 0.3s ease;
-          text-align: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .centercontainer {
-          display: flex;
-          justify-content: center; /* horizontal centering */
-          align-items: center;     /* vertical centering */
-          height: 100vh;           /* full viewport height */
-        }
-
         .btn.btn-secondary {
           background-color: gray;
           color: white;
@@ -141,11 +140,11 @@ const CustomerDashboard = () => {
           border-radius: 5px;
           font-weight: 500;
           transition: background-color 0.3s ease;
-}
+        }
 
-.btn.btn-secondary:hover {
-  background-color: darkgray;
-}
+        .btn.btn-secondary:hover {
+          background-color: darkgray;
+        }
 
       `}</style>
     </div>

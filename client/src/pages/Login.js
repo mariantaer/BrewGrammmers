@@ -1,9 +1,8 @@
-// Login.js
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import "./login.css"; // 🔗 Make sure this file exists
+import "./login.css"; // Ensure this exists and is linked
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -14,19 +13,16 @@ const Login = () => {
     contact_number: "",
     address: ""
   });
- 
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-
   const isAdmin = (username) => {
-    return username.toLowerCase().endsWith("@brewgram.com"); // Optional, depends on your role logic
+    return username.toLowerCase().endsWith("@brewgram.com");
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,9 +33,7 @@ const Login = () => {
         ? { username: formData.username, password: formData.password }
         : formData;
 
-
       const res = await axios.post(url, data);
-
 
       if (!isLogin) {
         alert(res.data.message);
@@ -47,13 +41,11 @@ const Login = () => {
         return;
       }
 
-
-      const { id, token, name, role } = res.data;
-
+      const { id, token, name, role, contact_number, address } = res.data;
 
       sessionStorage.setItem("token", token);
       sessionStorage.setItem("user", JSON.stringify({ id, name, username: formData.username, role }));
-
+      localStorage.setItem("userInfo", JSON.stringify({ name, contact_number, address }));
 
       if (role === "admin" || isAdmin(formData.username)) {
         navigate("/admindashboard");
@@ -65,11 +57,10 @@ const Login = () => {
     }
   };
 
-
   return (
     <>
       <NavBar />
-      <div style={{ maxWidth: 300, margin: "auto", padding: 0, color: "#000000", marginTop: 150, textAlign: "center"  }}>
+      <div className="login-container">
         <h2>{isLogin ? "Login" : "Sign Up"}</h2>
         <form onSubmit={handleSubmit}>
           {!isLogin && (
@@ -81,7 +72,6 @@ const Login = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                style={{ display: "block", justifyContent: "center", width: "100%", margin: "0 auto 20px" }}
               />
               <input
                 name="username"
@@ -90,7 +80,6 @@ const Login = () => {
                 value={formData.username}
                 onChange={handleChange}
                 required
-                style={{ display: "block", justifyContent: "center", width: "100%", margin: "0 auto 20px",  }}
               />
               <input
                 name="password"
@@ -99,7 +88,6 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                style={{ display: "block", justifyContent: "center", width: "100%", margin: "0 auto 20px" }}
               />
               <input
                 name="contact_number"
@@ -108,7 +96,6 @@ const Login = () => {
                 value={formData.contact_number}
                 onChange={handleChange}
                 required
-                style={{ display: "block", justifyContent: "center", width: "100%", margin: "0 auto 20px" }}
               />
               <textarea
                 name="address"
@@ -116,7 +103,6 @@ const Login = () => {
                 value={formData.address}
                 onChange={handleChange}
                 required
-                style={{ display: "block", justifyContent: "center", width: "100%", margin: "0 auto 20px" }}
               />
             </>
           )}
@@ -129,7 +115,6 @@ const Login = () => {
                 value={formData.username}
                 onChange={handleChange}
                 required
-                style={{ display: "block  ", justifyContent: "center", width: "100%", marginBottom: 10 }}
               />
               <input
                 name="password"
@@ -138,29 +123,22 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                style={{ display: "block", justifyContent: "center", width: "100%", marginBottom: 10 }}
               />
             </>
           )}
-          <button type="submit" style={{ width: "100%", backgroundColor: "#007bff", borderColor: ""}}>
+          <button type="submit">
             {isLogin ? "Login" : "Sign Up"}
           </button>
         </form>
-        <p style={{ marginTop: 50, textAlign: "center" }}>
+        <p>
           {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-          <button
-            onClick={() => setIsLogin(!isLogin)}
-            style={{ background: "", border: "", color: "blue", cursor: "pointer" }}
-          >
+          <button className="switch-mode" onClick={() => setIsLogin(!isLogin)}>
             {isLogin ? "Sign Up" : "Login"}
           </button>
         </p>
       </div>
     </>
-
-
   );
 };
-
 
 export default Login;

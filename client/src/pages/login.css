@@ -1,25 +1,24 @@
-/* Add this new container */
 .page-center {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full height of the viewport */
-  background-color: #f8f8f8; /* Optional light background */
-  padding-top: 900px;
+  height: 100vh;
+  background-color: #f8f8f8;
 }
 
-/* Existing styles */
 .login-container {
   max-width: 350px;
+  margin-left: 450px;
+  margin-top: 100px;
   width: 100%;
-  padding: 500px;
+  padding: 30px;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .login-container h2 {
-  text-align: center;
   margin-bottom: 20px;
   color: #007bff;
   font-size: 24px;
@@ -41,6 +40,7 @@
   width: 100%;
   padding: 10px;
   background-color: #007bff;
+  color: white;
   font-weight: bold;
   border: none;
   border-radius: 5px;
@@ -49,12 +49,11 @@
 }
 
 .login-container button[type="submit"]:hover {
-  background-color: #2e343a;
+  background-color: #2371bf;
 }
 
 .login-container p {
-  margin-top: 15px;
-  text-align: center;
+  margin-top: 20px;
 }
 
 .switch-mode {
